@@ -54,7 +54,7 @@ export default async function page() {
 					)}
 				</div>
 
-				<div>
+				<div className="flex flex-wrap justify-center">
 					{error && <div>Error occurred</div>}
 					{gamesWithTeamsAndScores &&
 						gamesWithTeamsAndScores?.map((game) => (

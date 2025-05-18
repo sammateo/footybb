@@ -87,6 +87,22 @@ export async function getTeamDetails(
 	};
 }
 
+export const insertTeam = async (newTeam: Team) => {
+	const res = await fetch("/api/team", {
+		method: "POST",
+		body: JSON.stringify(newTeam),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+	if (!res.ok) {
+		const error = await res.json();
+		console.error(error);
+		throw new Error(error?.error || "Failed to create player");
+	}
+	return await res.json();
+};
+
 export const insertTeamPlayer = async (newTeamPlayer: TeamPlayer) => {
 	const res = await fetch("/api/team/player", {
 		method: "POST",

@@ -16,7 +16,7 @@ export default async function page() {
 				<h1 className="text-2xl font-bold mb-4">Teams</h1>
 				{user && <PrimaryLink text="New Team" link="/teams/new" />}
 			</div>
-			<div className="px-10 md:px-20 flex flex-wrap gap-10">
+			<div className="px-10 md:px-20 flex justify-center flex-wrap gap-10">
 				{teams &&
 					teams.map((team) => (
 						<div
