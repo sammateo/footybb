@@ -2,7 +2,7 @@
 import { auth0 } from "@/lib/auth/auth0";
 import { NextResponse } from "next/server";
 import { supabaseClient } from "@/utils/supabase/client";
-import { Player, TeamPlayer } from "@/lib/types";
+import { TeamPlayer } from "@/lib/types";
 import { getOrCreateUser } from "@/lib/services/users";
 
 const supabase = supabaseClient();

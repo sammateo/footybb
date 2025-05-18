@@ -1,9 +1,7 @@
 import React from "react";
 import { supabaseClient } from "@/utils/supabase/client";
 import { GameWithTeamsAndScores } from "@/lib/types";
-import { GrLocationPin } from "react-icons/gr";
 import { RiAddCircleLine } from "react-icons/ri";
-import { CgArrowsExpandUpRight } from "react-icons/cg";
 import Navigation from "@/components/navigation/Navigation";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
 import { auth0 } from "@/lib/auth/auth0";

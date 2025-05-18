@@ -17,13 +17,20 @@ export const AddPlayerToTeamForm = ({
 	const router = useRouter();
 	const playerInputRef = useRef<HTMLSelectElement>(null);
 	const [showForm, setShowForm] = useState(false);
-	const [newTeamPlayer, setNewTeamPlayer] = useState<TeamPlayer>({
+	const newTeamPlayer: TeamPlayer = {
 		team_id: teamId,
 		player_id: "",
 		created_at: "",
 		updated_at: "",
 		deleted: false,
-	});
+	};
+	// const [newTeamPlayer, setNewTeamPlayer] = useState<TeamPlayer>({
+	// 	team_id: teamId,
+	// 	player_id: "",
+	// 	created_at: "",
+	// 	updated_at: "",
+	// 	deleted: false,
+	// });
 	const handleSubmit = async (e: React.FormEvent) => {
 		// setSubmitButtonDisabled(true)
 		e.preventDefault();

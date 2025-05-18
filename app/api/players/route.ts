@@ -98,7 +98,7 @@ export async function DELETE(req: Request) {
 		.eq("player_id", player_id)
 		.select();
 
-	if (teamPlayerError) {
+	if (goalError) {
 		console.error("[DELETE_GOAL_PLAYER]", error);
 		return NextResponse.json(
 			{ error: "Failed to goal player" },

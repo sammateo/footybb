@@ -1,4 +1,4 @@
-import { Game, GameWithTeamsAndScores } from "./game";
+import { GameWithTeamsAndScores } from "./game";
 import { Player } from "./player";
 
 export interface Team {

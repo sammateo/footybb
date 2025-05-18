@@ -1,10 +1,9 @@
-import SecondaryButton from "@/components/buttons/SecondaryButton";
 import Navigation from "@/components/navigation/Navigation";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
 import SecondaryLink from "@/components/navigation/SecondaryLink";
 import { DeletePlayerButton } from "@/components/players/DeletePlayerButton";
 import { auth0 } from "@/lib/auth/auth0";
-import { deletePlayer, getPlayerDetails } from "@/lib/services/players";
+import { getPlayerDetails } from "@/lib/services/players";
 import { PlayerDetails } from "@/lib/types";
 import { notFound } from "next/navigation";
 import React from "react";

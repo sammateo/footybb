@@ -24,10 +24,6 @@ export default async function page() {
 				<ul className="space-y-2 flex gap-10 flex-wrap justify-center">
 					{players &&
 						players.map((player: Player) => {
-							const buttonIcon: ButtonInterfaceIcon = {
-								iconComponent: <CgArrowsExpandUpRight />,
-								positionRight: true,
-							};
 							return (
 								<PlayerCard key={player.id} player={player} />
 							);
