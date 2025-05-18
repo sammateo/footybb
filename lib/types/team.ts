@@ -1,3 +1,4 @@
+import { Game, GameWithTeamsAndScores } from "./game";
 import { Player } from "./player";
 
 export interface Team {
@@ -13,4 +14,10 @@ export interface Team {
 
 export interface TeamWithPlayers extends Team {
 	players: Player[];
+}
+
+export interface TeamDetails {
+	team: Team;
+	players: Player[];
+	games: GameWithTeamsAndScores[];
 }

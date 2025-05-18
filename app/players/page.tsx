@@ -2,11 +2,12 @@ import Navigation from "@/components/navigation/Navigation";
 import PrimaryLink, {
 	ButtonInterfaceIcon,
 } from "@/components/navigation/PrimaryLink";
+import { PlayerCard } from "@/components/players/PlayerCard";
 import { auth0 } from "@/lib/auth/auth0";
 import { getAllPlayers } from "@/lib/services/players";
 import { Player } from "@/lib/types";
 import React from "react";
-import { CgArrowsExpandUpRight, CgProfile } from "react-icons/cg";
+import { CgArrowsExpandUpRight } from "react-icons/cg";
 
 export default async function page() {
 	const session = await auth0.getSession();
@@ -28,20 +29,7 @@ export default async function page() {
 								positionRight: true,
 							};
 							return (
-								<li
-									key={player.id}
-									className="shadow-xl w-72 max-w-11/12 rounded-md px-10 py-5 flex flex-col gap-5 justify-center items-center"
-								>
-									<CgProfile className="text-4xl" />
-									<p>{player.name}</p>
-									<p>{player.position ?? "N/A"}</p>
-									<p>#{player.number ?? "-"}</p>
-									<PrimaryLink
-										link={`/players/${player.id}`}
-										text="View"
-										icon={buttonIcon}
-									/>
-								</li>
+								<PlayerCard key={player.id} player={player} />
 							);
 						})}
 				</ul>

@@ -9,7 +9,7 @@ export const getAllPlayers = async () => {
 		.eq("deleted", false)
 		.order("created_at", { ascending: false });
 	if (error) console.error(error);
-	return players;
+	return players as Player[];
 };
 
 export const getPlayerDetails = async (
@@ -76,7 +76,7 @@ export const getPlayerDetails = async (
 				const team = tp.team;
 				const teammates = (team.team_players ?? [])
 					.map((tp) => tp.player)
-					.filter((p) => p && p.id !== playerId);
+					.filter((p) => p && p.id !== playerId && !p.deleted);
 
 				const games = [
 					...(team.team_a_games ?? []),
@@ -128,6 +128,22 @@ export const insertPlayer = async (newPlayer: Player) => {
 		const error = await res.json();
 		console.error(error);
 		throw new Error(error?.error || "Failed to create player");
+	}
+	return await res.json();
+};
+
+export const deletePlayer = async (playerId: string) => {
+	const res = await fetch("/api/players", {
+		method: "DELETE",
+		body: JSON.stringify({ player_id: playerId }),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+	if (!res.ok) {
+		const error = await res.json();
+		console.error(error);
+		throw new Error(error?.error || "Failed to delete player");
 	}
 	return await res.json();
 };

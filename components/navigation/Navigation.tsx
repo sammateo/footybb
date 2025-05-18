@@ -11,6 +11,10 @@ export default function Navigation() {
 			link: "/dashboard",
 		},
 		{
+			label: "Teams",
+			link: "/teams",
+		},
+		{
 			label: "Players",
 			link: "/players",
 		},
@@ -20,7 +24,7 @@ export default function Navigation() {
 			<Link href={"/"} className="px-5 py-4">
 				FootyBB
 			</Link>
-			<div className="flex gap-2">
+			<div className="flex flex-wrap gap-2">
 				{navigationItems.map((navigationItem, index) => (
 					<Link
 						className="px-5 py-4"

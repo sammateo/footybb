@@ -13,7 +13,7 @@ export default function SecondaryButton({
 			type={type}
 			disabled={disabled || false}
 			onClick={onClickFunction}
-			className="flex items-center cursor-pointer gap-2 border-2 border-blue-600 bg-blue-600 text-white transition-colors duration-500  hover:text-blue-600 hover:bg-white px-8 py-1 rounded-full w-fit"
+			className="flex items-center cursor-pointer gap-2 border-2 border-blue-600 bg-white text-blue-600 transition-colors duration-500  hover:text-white hover:bg-blue-600 px-8 py-1 rounded-full w-fit"
 		>
 			{icon && !icon.positionRight && icon.iconComponent}
 			{text}

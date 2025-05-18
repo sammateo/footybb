@@ -7,6 +7,7 @@ import { CgArrowsExpandUpRight } from "react-icons/cg";
 import Navigation from "@/components/navigation/Navigation";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
 import { auth0 } from "@/lib/auth/auth0";
+import { GameCard } from "@/components/games/GameCard";
 export default async function page() {
 	const session = await auth0.getSession();
 	const user = session?.user;
@@ -57,56 +58,7 @@ export default async function page() {
 					{error && <div>Error occurred</div>}
 					{gamesWithTeamsAndScores &&
 						gamesWithTeamsAndScores?.map((game) => (
-							<div
-								className="shadow-lg rounded-md w-80 max-w-11/12 p-4 flex flex-col gap-4"
-								key={game.id}
-							>
-								<div className="flex flex-col justify-center items-center">
-									<p className="flex items-center gap-2">
-										<GrLocationPin /> {game.location}
-									</p>
-									<p className="capitalize">{game.status}</p>
-								</div>
-								<div className="grid grid-cols-2 text-center">
-									<div>
-										<p>{game.team_a?.name}</p>
-										<p>
-											{
-												game.scores?.find(
-													(score) =>
-														score.team_id ==
-														game.team_a_id
-												)?.score
-											}
-										</p>
-									</div>
-									<div>
-										<p>{game.team_b?.name}</p>
-										<p>
-											{
-												game.scores?.find(
-													(score) =>
-														score.team_id ==
-														game.team_b_id
-												)?.score
-											}
-										</p>
-									</div>
-								</div>
-								<div>
-									<PrimaryLink
-										text="View"
-										link={`/games/${game.id}`}
-										icon={{
-											iconComponent: (
-												<CgArrowsExpandUpRight />
-											),
-											positionRight: true,
-										}}
-										// className="flex items-center gap-2 bg-blue-600 text-white px-8 py-1 rounded-full w-fit"
-									></PrimaryLink>
-								</div>
-							</div>
+							<GameCard key={game.id} game={game} />
 						))}
 				</div>
 			</div>
