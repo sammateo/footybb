@@ -1,5 +1,5 @@
 import { supabaseClient } from "@/utils/supabase/client";
-import { Game, Player, PlayerDetails } from "../types";
+import { Game, Player, PlayerDetails, Team } from "../types";
 
 const supabase = supabaseClient();
 export const getAllPlayers = async () => {
@@ -90,11 +90,27 @@ export const getPlayerDetails = async (
 				};
 			}
 		),
-		goals: data.goals.map((goal: any) => ({
-			...goal,
-			game: goal.game,
-			team: goal.team,
-		})),
+		goals: data.goals.map(
+			(goal: {
+				id: string;
+				game_id: string;
+				player_id: string;
+				team_id: string;
+				minute: number;
+				created_by?: string;
+				updated_by?: string;
+				created_at: string;
+				updated_at: string;
+				deleted: boolean;
+				deleted_at?: string;
+				game: Game;
+				team: Team;
+			}) => ({
+				...goal,
+				game: goal.game,
+				team: goal.team,
+			})
+		),
 	};
 
 	return player;
