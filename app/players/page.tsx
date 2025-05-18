@@ -1,13 +1,10 @@
 import Navigation from "@/components/navigation/Navigation";
-import PrimaryLink, {
-	ButtonInterfaceIcon,
-} from "@/components/navigation/PrimaryLink";
+import PrimaryLink from "@/components/navigation/PrimaryLink";
 import { PlayerCard } from "@/components/players/PlayerCard";
 import { auth0 } from "@/lib/auth/auth0";
 import { getAllPlayers } from "@/lib/services/players";
 import { Player } from "@/lib/types";
 import React from "react";
-import { CgArrowsExpandUpRight } from "react-icons/cg";
 
 export default async function page() {
 	const session = await auth0.getSession();
