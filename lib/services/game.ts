@@ -2,6 +2,7 @@ import { supabaseClient } from "@/utils/supabase/client";
 import {
 	GameWithTeamsAndScores,
 	GameWithTeamsAndScoresAndPlayers,
+	Player,
 	TeamWithPlayers,
 } from "@/lib/types";
 
@@ -86,8 +87,20 @@ export async function getGameWithTeamsAndScoresAndPlayers(
 		return null;
 	}
 	// Flatten team_a.players → Player[]
-	const flattenPlayers = (teamData: any): TeamWithPlayers => {
-		const players = (teamData?.players ?? []).map((tp: any) => tp.player);
+	const flattenPlayers = (teamData: {
+		id: string;
+		name: string;
+		created_by?: string;
+		updated_by?: string;
+		created_at: string;
+		updated_at: string;
+		deleted: boolean;
+		deleted_at?: string;
+		players: {
+			player: Player;
+		}[];
+	}): TeamWithPlayers => {
+		const players = (teamData?.players ?? []).map((tp) => tp.player);
 		return { ...teamData, players };
 	};
 

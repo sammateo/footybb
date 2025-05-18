@@ -1,7 +1,6 @@
 import React from "react";
 import { getGameWithTeamsAndScoresAndPlayers } from "@/lib/services/game";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { BiArrowBack } from "react-icons/bi";
 import Navigation from "@/components/navigation/Navigation";
 import SecondaryLink from "@/components/navigation/SecondaryLink";

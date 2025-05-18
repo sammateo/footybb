@@ -1,7 +1,5 @@
 import { supabaseClient } from "@/utils/supabase/client";
-import { Player, PlayerDetails } from "../types";
-import { auth0 } from "@/lib/auth/auth0";
-import { getOrCreateUser } from "./users";
+import { Game, Player, PlayerDetails } from "../types";
 
 const supabase = supabaseClient();
 export const getAllPlayers = async () => {
@@ -65,23 +63,33 @@ export const getPlayerDetails = async (
 	}
 	const player: PlayerDetails = {
 		...data,
-		teams: data.team_players.map((tp: any) => {
-			const team = tp.team;
-			const teammates = (team.team_players ?? [])
-				.map((tp: any) => tp.player)
-				.filter((p: any) => p && p.id !== playerId);
+		teams: data.team_players.map(
+			(tp: {
+				team: {
+					team_players: {
+						player: Player;
+					}[];
+					team_a_games: Game[];
+					team_b_games: Game[];
+				};
+			}) => {
+				const team = tp.team;
+				const teammates = (team.team_players ?? [])
+					.map((tp) => tp.player)
+					.filter((p) => p && p.id !== playerId);
 
-			const games = [
-				...(team.team_a_games ?? []),
-				...(team.team_b_games ?? []),
-			];
+				const games = [
+					...(team.team_a_games ?? []),
+					...(team.team_b_games ?? []),
+				];
 
-			return {
-				team,
-				teammates,
-				games,
-			};
-		}),
+				return {
+					team,
+					teammates,
+					games,
+				};
+			}
+		),
 		goals: data.goals.map((goal: any) => ({
 			...goal,
 			game: goal.game,

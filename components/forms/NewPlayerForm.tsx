@@ -5,7 +5,6 @@ import { insertPlayer } from "@/lib/services/players";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { Toast } from "../alerts/ConfirmationDialog";
 import { useRouter } from "next/navigation";
-import SecondaryButton from "../buttons/SecondaryButton";
 import SecondaryLink from "../navigation/SecondaryLink";
 import { BiArrowBack } from "react-icons/bi";
 
@@ -26,12 +25,14 @@ export const NewPlayerForm = () => {
 		e.preventDefault();
 		try {
 			const insertNewPlayerResult = await insertPlayer(newPlayer);
-			Toast.fire({
-				icon: "success",
-				title: "Player created successfully",
-			}).then(() => {
-				router.push("/players");
-			});
+			if (insertNewPlayerResult) {
+				Toast.fire({
+					icon: "success",
+					title: "Player created successfully",
+				}).then(() => {
+					router.push("/players");
+				});
+			}
 		} catch (err) {
 			console.error(err);
 			setSubmitButtonDisabled(false);
