@@ -6,9 +6,9 @@ import { notFound } from "next/navigation";
 import React from "react";
 import { CgArrowsExpandUpRight } from "react-icons/cg";
 type Props = {
-	params: {
+	params: Promise<{
 		id: string;
-	};
+	}>;
 };
 
 export default async function page({ params }: Props) {

@@ -5,9 +5,9 @@ import { BiArrowBack } from "react-icons/bi";
 import Navigation from "@/components/navigation/Navigation";
 import SecondaryLink from "@/components/navigation/SecondaryLink";
 type Props = {
-	params: {
+	params: Promise<{
 		id: string;
-	};
+	}>;
 };
 
 export default async function page({ params }: Props) {
